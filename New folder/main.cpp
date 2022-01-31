@@ -12,7 +12,7 @@ sqlite3* db;
 void allmenu();     void showmenu();    void addmenu();     void deletemenu();      void edit_menu();
 int callback(void *NotUsed, int argc, char **argv, char **azColName);
 
-void select_table();
+void start();   void select_table();
 void checkbill();
 
 int main() 
@@ -28,12 +28,9 @@ int main()
         cout << "Opened Database Successfully!" << endl; 
     }
 
-    //showmenu();
-    allmenu();
-    //addmenu();
-    //deletemenu();
-    allmenu();
-  
+    //void start();
+    void allmenu();
+    
     sqlite3_close(db);// Close the connection
     return (0); 
 } 
@@ -106,9 +103,9 @@ void addmenu(){
     sqlite3_stmt * stmt;
     
     string name,price;
-    cout << "Input food name : "
+    cout << "Input food name : ";
     cin >> name ;
-    cout << "Input food price : "
+    cout << "Input food price : ";
     cin >> price ;
 
     string sqlstatement = "INSERT INTO menu (food_name, price) VALUES ('" + name + "','" + price + "');";
@@ -119,7 +116,7 @@ void addmenu(){
 
 void deletemenu(){
     string id;
-    cout << "Input food ID : "
+    cout << "Input food ID : ";
     cin >> id;
     sqlite3_stmt * stmt;
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
@@ -134,7 +131,7 @@ void edit_menu(){
 
     if(select == 1) addmenu();
     if(select == 2) deletemenu();
-    if(select == 3) //put action here ;
+    if(select == 3) ;
 
 }
 
@@ -162,6 +159,42 @@ void checkbill(){
     sqlite3_stmt * stmt;
   
     sqlite3_prepare( db, "SELECT * FROM menu;", -1, &stmt, NULL );//preparing the statement
+}
+
+void start(){
+    int select;
+    bool done = true;
+    
+    while(done){
+        cout << "--START--";
+        cout << "1.Select table ( press 1 )\n" << "2.Check bill ( press 2 )\n" << "3.Edit menu ( press 3 )\n" << "4.Check daily balance ( press 4 )\n";
+        cout << "5.Exit ( press 5 )\n";
+        cin >> select;
+
+        switch (select)
+        {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+                edit_menu();
+                break;
+            case 4:
+            
+                break;
+            case 5:
+                done = false;
+                break;    
+            default:
+
+                break;
+        }
+        
+    }
+    
 }
 //gcc sqlite3.c -c   ทำแบบนี้มันจะไม่ได้ exe แต่จะได้เป็น object file ที่ลิงค์เข้ากับโค้ดให้โปรแกรมเราไปเรียกใช้ตอน compile ครับ
 //how to run (safe file first) ; g++ main.cpp sqlite3.o ; ./a.exe
