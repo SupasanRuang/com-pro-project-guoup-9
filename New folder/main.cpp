@@ -27,10 +27,10 @@ int main()
     } else {
         cout << "Opened Database Successfully!" << endl; 
     }
+    allmenu();
+    //start();
+    showmenu();
 
-    //void start();
-    void allmenu();
-    
     sqlite3_close(db);// Close the connection
     return (0); 
 } 
@@ -78,24 +78,18 @@ void allmenu(){
 
 void showmenu(){
     sqlite3_stmt * stmt;
-  
-    int id;
-    cin >> id;
-    id -= 1;
+    cout << "push : ";
+    string id;
+    getline(cin,id);
+    string text2 = "SELECT * FROM menu WHERE food_id = " + id + " ;" ;
 
-    sqlite3_prepare( db, "SELECT * FROM menu;", -1, &stmt, NULL );//preparing the statement
+    sqlite3_prepare( db, text2.c_str(), -1, &stmt, NULL );//preparing the statement
     const unsigned char* text;
-    
-    for(int j=0;j<=id;j++){
-        sqlite3_step(stmt);
-        if(j==id){
+    sqlite3_step(stmt);
             for(int i=0;i<3;i++){
                 text = sqlite3_column_text(stmt,i);
                 cout << text << " ";
             }
-            break;
-        }
-    }
     sqlite3_finalize(stmt);
 }
 
