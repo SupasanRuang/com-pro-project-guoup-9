@@ -39,7 +39,7 @@ void add_date(vector<daily_income> daily,string date ,int income);
 int bill_check(vector<table_order> &note ,vector<menubook> book ,vector<daily_income> daily);
 string datenow();
 
-int main()
+/*int main()
 {
     vector<table_order> table1,table2;
     vector<daily_income> daily;
@@ -50,7 +50,7 @@ int main()
     else cout<<"no using";
     return 0;
 
-}
+}*/
 
 void addorder(vector<table_order> &note , int id, int num)
 {
@@ -144,10 +144,6 @@ int bill_check(vector<table_order> &note ,vector<menubook> book ,vector<daily_in
     return sum;
 }
 
-
-
-
-
 bool cancelorder(vector<table_order> &note ,int id)
 {
     bool having=true;
@@ -155,7 +151,6 @@ bool cancelorder(vector<table_order> &note ,int id)
     {
         if(note[i].food_id==id)
         {
-            
             note.erase(note.begin()+i);
             return true;
         }
@@ -163,10 +158,6 @@ bool cancelorder(vector<table_order> &note ,int id)
     return false;
 
 }
-
-
-
-
 
 void push_menubook(vector<menubook> &book){
 
