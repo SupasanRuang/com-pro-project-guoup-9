@@ -34,12 +34,14 @@ struct daily_income
 
 char table[9] = {'1','2','3','4','5','6','7','8','9'};
 vector<table_order> table1,table2,table3,table4,table5,table6,table7,table8,table9;
+vector<daily_income> daily;
+vector<menubook> book;
 
 //prototype
-void allmenu();     void showmenu();    void addmenu();     void deletemenu();      void edit_menu();
+void allmenu();     void showmenu(int);    void addmenu();     void deletemenu();      void edit_menu();
 int callback(void *NotUsed, int argc, char **argv, char **azColName);
 
-void table_order(int); void loop_order(vector<table_order> &table);
+void number_table_order(int); void loop_order(vector<table_order> &table);
 
 void start();   void select_table();
 void select_checkbill();
@@ -108,7 +110,7 @@ void start(){
 void select_table(){
 
     int sl_table;
-    cout << "input num : ";
+    cout << "input table want to select : ";
     cin >> sl_table;
 
     for(int i=0 ; i<9 ; i++){
@@ -121,7 +123,7 @@ void select_table(){
         cout << table[j] << " ";
     }
     cout << endl;
-    table_order(sl_table);
+    number_table_order(sl_table);
 }
 
 void select_checkbill(){
@@ -142,8 +144,10 @@ void select_checkbill(){
 }
 
 void loop_order(vector<table_order> &table){
+    allmenu();
     int id,num;
     while(true){
+        int count=0;
         cout << "Input order menu ID (If want to exit input 0) : ";
         cin >> id;
         if(id == 0) break;
@@ -151,10 +155,14 @@ void loop_order(vector<table_order> &table){
         cout << "Input quantity order : ";
         cin >> num;
         addorder(table,id,num);
+        for(unsigned int i=0;i<table.size();i++){
+            cout << table[count];
+            count++;
+        }
     }
 }
 
-void table_order(int tb_num){
+void number_table_order(int tb_num){
     switch (tb_num)
     {
     case 1:
@@ -215,12 +223,11 @@ void allmenu(){
 
 }
 
-void showmenu(){
+void showmenu(int id){
     sqlite3_stmt * stmt;
-    cout << "push : ";
-    string id;
-    getline(cin,id);
-    string text2 = "SELECT * FROM menu WHERE food_id = " + id + " ;" ;
+
+    string str_id = to_string(id);
+    string text2 = "SELECT * FROM menu WHERE food_id = " + str_id + " ;" ;
 
     sqlite3_prepare( db, text2.c_str(), -1, &stmt, NULL );//preparing the statement
     const unsigned char* text;
