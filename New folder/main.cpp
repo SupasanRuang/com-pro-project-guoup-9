@@ -76,10 +76,17 @@ void start(){
     bool done = true;
     
     while(done){
-        cout << "--START--";
-        cout << "1.Select table ( press 1 )\n" << "2.Check bill ( press 2 )\n" << "3.Edit menu ( press 3 )\n" << "4.Check daily balance ( press 4 )\n";
-        cout << "5.Exit ( press 5 )\n";
+        cout <<"\t" << "_______________________________________" <<endl;
+        cout <<"\t" <<"|"<<"\t\t"<<"--START--"<<setw(16)<<right << "|" <<endl;
+        cout <<"\t" <<"|"<<"  1.Select table ( press 1 )" <<"\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  2.Check bill ( press 2 )"<<"\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  3.Edit menu ( press 3 )"<<"\t\t" <<"|" <<endl ;
+        cout <<"\t" <<"|"<<"  4.Check daily balance ( press 4 )" << "\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  5.Exit ( press 5 )"<<"\t\t\t" <<"|" <<endl;
+        cout <<"\t" << "|_______________________________________|" <<endl;
+        cout <<setw(5)<<left <<"\t" <<"  What would you choose ? : ";
         cin >> select;
+
 
         switch (select)
         {
@@ -266,8 +273,15 @@ void deletemenu(){
 
 void edit_menu(){
     int select;
-    cout << "what you want to edit\n"<<"1.Add menu ( press 1 )\n"<<"2.Delete menu ( press 2 )\n"<<"3.Go back ( press 3 )\n"<<"Input your choice : ";
+    cout <<setw(5)<<left <<"\t" << "_______________________________" <<endl;
+    cout <<setw(5)<<left <<"\t" <<"|"<<"   --What you want to edit--" <<"   |" <<endl;
+    cout <<setw(5)<<left <<"\t" <<"|"<<"  1.Add menu ( press 1 )"<<setw(5)<<left << "\t" <<"|" <<endl;
+    cout <<setw(5)<<left <<"\t" <<"|"<<"  2.Delete menu ( press 2 )"<<"    |" <<endl;
+    cout <<setw(5)<<left <<"\t" <<"|"<<"  3.Go back ( press 3 )"<<setw(5)<<left << "\t" <<"|" <<endl;
+    cout <<setw(5)<<left <<"\t" << "|_______________________________|" <<endl;
+    cout <<setw(12)<<left <<"\t" <<"Input your choice : ";
     cin >> select;
+
 
     if(select == 1) addmenu();
     if(select == 2) deletemenu();
