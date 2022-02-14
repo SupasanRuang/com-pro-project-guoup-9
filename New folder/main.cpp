@@ -100,16 +100,6 @@ void start(){
     bool done = true;
     
     while(done){
-<<<<<<< HEAD
-        cout << "--START--"<<endl;
-        cout << "1.Select table ( press 1 )\n" ;
-        cout<< "2.Order Menu ( press 2 )\n" ;
-        cout<< "3.Check bill ( press 3 )\n" ;
-        cout<< "4.Edit menu ( press 4 )\n";
-        cout<< "5.Check daily balance ( press 5 )\n";
-        cout << "6.Exit ( press 6 )\n";
-        cout<<"Input Your choice : ";
-=======
         cout <<"\t" << "_______________________________________" <<endl;
         cout <<"\t" <<"|"<<"\t\t"<<"--START--"<<setw(16)<<right << "|" <<endl;
         cout <<"\t" <<"|"<<"  1.Select table ( press 1 )" <<"\t\t" <<"|" <<endl;
@@ -119,7 +109,6 @@ void start(){
         cout <<"\t" <<"|"<<"  5.Exit ( press 5 )"<<"\t\t\t" <<"|" <<endl;
         cout <<"\t" << "|_______________________________________|" <<endl;
         cout <<setw(5)<<left <<"\t" <<"  What would you choose ? : ";
->>>>>>> 9e5bc03b29ae774777d28407976e989fe40661dd
         cin >> select;
 
 
