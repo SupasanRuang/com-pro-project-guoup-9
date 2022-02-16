@@ -80,6 +80,7 @@ int main()
     } else {
         cout << "Opened Database Successfully!" << endl; 
     }
+    
     pull_daily_income(daily);
     push_menubook(book);
     cout<<"printmenubook\n";  
@@ -101,7 +102,7 @@ void start(){
          cout <<"\t" << "_________________________________________" <<endl;
         cout <<"\t" <<"|"<<"\t\t"<<"--START--"<<setw(16)<<right << "|" <<endl;
         cout <<"\t" <<"|"<<"  1.Select table ( press 1 )" <<"\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  2.Order Menu ( press 2 )"<<"\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  2.Add menu for selected table ( press 2 )"<<"\t\t" <<"|" <<endl;
         cout <<"\t" <<"|"<<"  3.Check bill ( press 3 )"<<"\t\t" <<"|" <<endl ;
         cout <<"\t" <<"|"<<"  4.Edit menu ( press 4 )" << "\t\t" <<"|" <<endl;
         cout <<"\t" <<"|"<<"  5.Check daily balance ( press 5 )"<<"\t" <<"|" <<endl;
@@ -167,8 +168,11 @@ void select_table(){
     }
     while(true)
     {
-        cout << "input table want to select : ";
+        cout << "input table want to select ( exit input 0 ): ";
         cin >> sl_table;
+        if(sl_table == 0){
+            return; // out of select table
+        }
         if (sl_table<1||sl_table>9)
         {
             cout<<"---------------------------------------------------------\n";
@@ -189,7 +193,9 @@ void select_table(){
             continue;
         }
     }
+    
     table[sl_table-1] = '-';
+
     for(int j=0 ; j<9;j++){
         cout << table[j] << " ";
     }
@@ -428,10 +434,29 @@ void addmenu(){
     string sqlstatement = "INSERT INTO menu (food_name, price) VALUES ('" + name + "','" + price + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
     sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
+    update_menubook(book);
     
 }
 
 void deletemenu(){
+    bool no_empty= false;
+    for (int i = 0; i < 9; i++)
+    {
+        if(table[i]=='-')
+        {
+            no_empty=true;
+            break ;
+        }
+    }
+    if(no_empty)
+    {
+       for (int i = 0; i < 9; i++)
+        {
+            cout<<table[i]<<" ";
+        }
+        cout<<"\nThese are used table. Wait all table are empty "<<endl; 
+        return ;
+    }
     string id;
     cout << "Input food ID : ";
     cin >> id;
@@ -439,23 +464,43 @@ void deletemenu(){
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
     sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
+    update_menubook(book);
 }
 
 void edit_menu(){
     int select;
-    cout <<setw(5)<<left <<"\t" << "_______________________________" <<endl;
-    cout <<setw(5)<<left <<"\t" <<"|"<<"   --What you want to edit--" <<"   |" <<endl;
-    cout <<setw(5)<<left <<"\t" <<"|"<<"  1.Add menu ( press 1 )"<<setw(5)<<left << "\t" <<"|" <<endl;
-    cout <<setw(5)<<left <<"\t" <<"|"<<"  2.Delete menu ( press 2 )"<<"    |" <<endl;
-    cout <<setw(5)<<left <<"\t" <<"|"<<"  3.Go back ( press 3 )"<<setw(5)<<left << "\t" <<"|" <<endl;
-    cout <<setw(5)<<left <<"\t" << "|_______________________________|" <<endl;
-    cout <<setw(12)<<left <<"\t" <<"Input your choice : ";
-    cin >> select;
+    bool done=true;
+    while(done){
+        cout << "what you want to edit\n";
+        cout <<"1.Add menu ( press 1 )\n"; //Add menu in database
+        cout<<"2.Delete menu ( press 2 )\n"; // Delete menu in database
+        cout<<"3.Show menu ( press 3 )\n";  //Show menu in book
+        cout<<"4.Go back ( press 4 )\n";
+        cout<<"Input your choice : ";
+        cin >> select;
 
+        switch (select)
+            {
+                case 1:
+                    addmenu();
+                    break;
+                case 2:
+                    deletemenu();
+                    break;
+                case 3:
+                    printmenubook(book);
+                    break;
+                case 4:
+                    done = false;
+                    break;
+                default:
+                    cout<<"---------------------------------------------------------\n";
+                    cout<< "Error Select again"<<endl;
+                    cout<<"---------------------------------------------------------\n";
+                    break;
+            }
+    }
 
-    if(select == 1) addmenu();
-    if(select == 2) deletemenu();
-    if(select == 3) ;
 
 }
 
@@ -776,8 +821,8 @@ void print_daily_income(vector<daily_income> daily)
 
 void push_daily_income(vector<daily_income> &daily)
 {
-    void delete_old_daily();
-    
+    delete_old_daily();
+
     sqlite3_stmt * stmt;
     //menu --------> daily income
     sqlite3_prepare( db, "SELECT * FROM dailybill;", -1, &stmt, NULL );
@@ -879,24 +924,7 @@ void all_daily_income(){
 
 void update_menubook(vector<menubook> &book)
 {
-    bool no_empty= false;
-    for (int i = 0; i < 9; i++)
-    {
-        if(table[i]=='-')
-        {
-            no_empty=true;
-            break ;
-        }
-    }
-    if(no_empty)
-    {
-       for (int i = 0; i < 9; i++)
-        {
-            cout<<table[i]<<" ";
-        }
-        cout<<"\nThese are used table. Wait all table are empty "<<endl; 
-        return ;
-    }
+    
     book.clear();
     push_menubook(book);
     cout<<"Menubook is update"<<endl;
