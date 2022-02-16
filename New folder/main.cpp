@@ -98,13 +98,14 @@ void start(){
     bool done = true;
     
     while(done){
-        cout <<"\t" << "_______________________________________" <<endl;
+         cout <<"\t" << "_________________________________________" <<endl;
         cout <<"\t" <<"|"<<"\t\t"<<"--START--"<<setw(16)<<right << "|" <<endl;
         cout <<"\t" <<"|"<<"  1.Select table ( press 1 )" <<"\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  2.Check bill ( press 2 )"<<"\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  3.Edit menu ( press 3 )"<<"\t\t" <<"|" <<endl ;
-        cout <<"\t" <<"|"<<"  4.Check daily balance ( press 4 )" << "\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  5.Exit ( press 5 )"<<"\t\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  2.Order Menu ( press 2 )"<<"\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  3.Check bill ( press 3 )"<<"\t\t" <<"|" <<endl ;
+        cout <<"\t" <<"|"<<"  4.Edit menu ( press 4 )" << "\t\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  5.Check daily balance ( press 5 )"<<"\t" <<"|" <<endl;
+        cout <<"\t" <<"|"<<"  6.Exit ( press 6 )" << "\t\t\t" << "|" << endl;
         cout <<"\t" << "|_______________________________________|" <<endl;
         cout <<setw(5)<<left <<"\t" <<"  What would you choose ? : ";
         cin >> select;
