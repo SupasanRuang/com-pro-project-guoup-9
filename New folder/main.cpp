@@ -45,7 +45,7 @@ int callback(void *NotUsed, int argc, char **argv, char **azColName);
 void number_table_order(int); void loop_order(vector<table_order> &table);
 
 void start();   void select_table();
-void select_checkbill();
+void select_checkbill(); void delete_old_daily();
 
 void push_menubook(vector<menubook> &book);                     
 void printmenubook(vector<menubook> &book);
@@ -80,16 +80,14 @@ int main()
     } else {
         cout << "Opened Database Successfully!" << endl; 
     }
-
+    pull_daily_income(daily);
     push_menubook(book);
     cout<<"printmenubook\n";  
-    printmenubook(book) ;
+    printmenubook(book);
     start();
-    //select_table();
-    //table_bill();
 
 
-
+    push_daily_income(daily);
     daily.clear();
     sqlite3_close(db);// Close the connection
     return (0); 
@@ -128,7 +126,7 @@ void start(){
                 edit_menu();
                 break;
             case 5:
-                print_daily_income( daily);
+                print_daily_income(daily);
                 break; 
             case 6:
                 done = false;
@@ -444,43 +442,6 @@ void deletemenu(){
 
 void edit_menu(){
     int select;
-<<<<<<< HEAD
-    bool done=true;
-    while(done){
-        cout << "what you want to edit\n";
-        cout <<"1.Add menu in Database( press 1 )\n";
-        cout<<"2.Delete menu in Database( press 2 )\n";
-        cout<<"3.Update menu int Menubook( press 3 )\n";
-        cout<<"4.Show menu in Database( press 4 )\n";
-        cout<<"5.Go back ( press 5 )\n";
-        cout<<"Input your choice : ";
-        cin >> select;
-
-        switch (select)
-            {
-                case 1:
-                    addmenu();
-                    break;
-                case 2:
-                    deletemenu();
-                    break;
-                case 3:
-                    allmenu();
-                    break;
-                case 4:
-                    update_menubook(book);
-                    break;
-                case 5:
-                    done = false;
-                    break;
-                default:
-                    cout<<"---------------------------------------------------------\n";
-                    cout<< "Error Select again"<<endl;
-                    cout<<"---------------------------------------------------------\n";
-                    break;
-            }
-    }
-=======
     cout <<setw(5)<<left <<"\t" << "_______________________________" <<endl;
     cout <<setw(5)<<left <<"\t" <<"|"<<"   --What you want to edit--" <<"   |" <<endl;
     cout <<setw(5)<<left <<"\t" <<"|"<<"  1.Add menu ( press 1 )"<<setw(5)<<left << "\t" <<"|" <<endl;
@@ -494,7 +455,6 @@ void edit_menu(){
     if(select == 1) addmenu();
     if(select == 2) deletemenu();
     if(select == 3) ;
->>>>>>> 9e5bc03b29ae774777d28407976e989fe40661dd
 
 }
 
@@ -815,14 +775,16 @@ void print_daily_income(vector<daily_income> daily)
 
 void push_daily_income(vector<daily_income> &daily)
 {
+    void delete_old_daily();
+    
     sqlite3_stmt * stmt;
     //menu --------> daily income
     sqlite3_prepare( db, "SELECT * FROM dailybill;", -1, &stmt, NULL );
     string date , income;
     int int_income;
     for(unsigned int i=0;i<daily.size();i++){
-        date = daily.date[i];
-        income = to_string(daily.income[i]);
+        date = daily[i].date;
+        income = to_string(daily[i].income);
         string sqlstatement = "INSERT INTO dailybill (date,income) VALUES ('" + date + "','" + income + "');";
         sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
         sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
@@ -1004,5 +966,13 @@ void printmenubook(vector<menubook> &book)
     cout<<"---------------------------------------------------------\n";
 }
 
+void delete_old_daily(){
+    
+    sqlite3_stmt * stmt;
+    string sqlstatement = "DELETE FROM dailybill;";
+    sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
+    sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
+
+}
 //gcc sqlite3.c -c   ทำแบบนี้มันจะไม่ได้ exe แต่จะได้เป็น object file ที่ลิงค์เข้ากับโค้ดให้โปรแกรมเราไปเรียกใช้ตอน compile ครับ
 //how to run (safe file first) ; g++ main.cpp sqlite3.o ; ./a.exe
