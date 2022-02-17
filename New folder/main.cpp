@@ -272,6 +272,7 @@ void loop_order(vector<table_order> &thetable){
             default:
                 cout<<setw(44)<< "Error Select again!!"<<endl;
                 //cout<<setw(63)<<"---------------------------------------------------------\n";
+
                 break;
         }
     }
@@ -315,6 +316,7 @@ void number_table_order(int tb_num=0){
             {
             count++;
             }
+
         }
         cout << endl;
         if(count==9)
@@ -637,7 +639,6 @@ void cancel_table_order(vector<table_order> &thetable )
         }
         else if(thetable[x].order==0)
         {
-
             cout<<setw(63)<<"---------------------------------------------------------\n";
             cout<<setw(47)<<"Don't have this ID in Order\n";
             //cout<<setw(63)<<"---------------------------------------------------------\n";
@@ -983,7 +984,6 @@ void all_daily_income(){
     sqlite3_finalize(stmt);
 
 }
-
 void update_menubook(vector<menubook> &book)
 {
     
