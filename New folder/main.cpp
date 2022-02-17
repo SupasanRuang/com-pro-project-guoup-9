@@ -99,17 +99,18 @@ void start(){
     bool done = true;
     
     while(done){
-         cout <<"\t" << "_________________________________________" <<endl;
-        cout <<"\t" <<"|"<<"\t\t"<<"--START--"<<setw(16)<<right << "|" <<endl;
-        cout <<"\t" <<"|"<<"  1.Select table ( press 1 )" <<"\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  2.Add menu for selected table ( press 2 )"<<"\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  3.Check bill ( press 3 )"<<"\t\t" <<"|" <<endl ;
-        cout <<"\t" <<"|"<<"  4.Edit menu ( press 4 )" << "\t\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  5.Check daily balance ( press 5 )"<<"\t" <<"|" <<endl;
-        cout <<"\t" <<"|"<<"  6.Exit ( press 6 )" << "\t\t\t" << "|" << endl;
-        cout <<"\t" << "|_______________________________________|" <<endl;
-        cout <<setw(5)<<left <<"\t" <<"  What would you choose ? : ";
+        cout <<setw(57) << "______________________________________________" <<endl;
+        cout <<setw(12)<<"|"<<setw(26) <<"--START--"<<setw(19) << "|" <<endl;
+        cout <<setw(12)<<"|"<<"  1.Select table ( press 1 )" <<setw(17)  <<"|" <<endl;
+        cout <<setw(12)<<"|"<<"  2.Add menu for selected table ( press 2 )"<< setw(2) <<"|" <<endl;
+        cout <<setw(12)<<"|"<<"  3.Check bill ( press 3 )"<<setw(19) <<"|" <<endl ;
+        cout <<setw(12)<<"|"<<"  4.Edit menu ( press 4 )" <<setw(20) <<"|" <<endl;
+        cout <<setw(12)<<"|"<<"  5.Check daily balance ( press 5 )"<<setw(10) <<"|" <<endl;
+        cout <<setw(12)<<"|"<<"  6.Exit ( press 6 )"<<setw(25)  << "|" << endl;
+        cout <<setw(57)<< "|____________________________________________|" <<endl;
+        cout <<setw(16)<<"\t" <<"  What would you choose ? : ";
         cin >> select;
+        
 
 
         switch (select)
@@ -132,14 +133,15 @@ void start(){
                 break; 
             case 6:
                 done = false;
-                cout<<"---------------------------------------------------------\n";
-                cout<< "Ending Program"<<endl;
-                cout<<"---------------------------------------------------------\n";
+                cout<<setw(63)<<"---------------------------------------------------------\n";
+                cout<<setw(40)<< "Ending Program"<<endl;
+                cout<<setw(63)<<"---------------------------------------------------------\n";
                 break;
             default:
-                cout<<"---------------------------------------------------------\n";
-                cout<< "Error Select again"<<endl;
-                cout<<"---------------------------------------------------------\n";
+                cout<<setw(63)<<"---------------------------------------------------------\n";
+                cout<<setw(38)<< "Error!!\n";
+                cout<<setw(39)<<"Select again"<<endl;
+                cout<<setw(63)<<"---------------------------------------------------------\n";
                 break;
         }
         
@@ -150,9 +152,20 @@ void start(){
 void select_table(){
     
     int sl_table,count=0;
-    cout<<"---------------------------------------------------------\n";
+    cout<<setw(63)<<"---------------------------------------------------------\n\n";
     for(int j=0 ; j<9;j++){
-        cout << table[j] << " ";
+        if(j%3 == 0){
+            cout << setw(28) << table[j];
+        }else{
+            cout<<setw(5) << table[j];
+        }
+        if((j+1)%3 == 0 && j != 0){
+            if((j+1) == 9){
+                cout << "\n";
+            }else{
+                cout << "\n\n";
+            }
+        }
         if(table[j]=='-')
         {
             count++;
@@ -161,23 +174,25 @@ void select_table(){
     cout << endl;
     if(count==9)
     {
-        cout<<"---------------------------------------------------------\n";
-        cout<<"Sorry all table are used.\nPlease wait it empty." << endl;
-        cout<<"---------------------------------------------------------\n";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<setw(45)<<"Sorry all table are used." <<"\n";
+        cout<<setw(43)<<"Please wait it empty." << endl;
+        cout<<setw(63)<<"---------------------------------------------------------\n";
         return;
     }
     while(true)
     {
-        cout << "input table want to select ( exit input 0 ): ";
+        cout<<setw(55)<< "input table want to select ( exit input 0 ): ";
         cin >> sl_table;
+        cout << "\n";
         if(sl_table == 0){
             return; // out of select table
         }
         if (sl_table<1||sl_table>9)
         {
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Don't have this table\n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(43)<<"Don't have this table\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
             continue;
         }
         
@@ -187,9 +202,9 @@ void select_table(){
         }
         else 
         {
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Sorry this table is used. Please select table again." << endl;
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(60)<<"Sorry this table is used. Please select table again." << endl;
+            cout<<setw(63)<<"---------------------------------------------------------\n";
             continue;
         }
     }
@@ -197,9 +212,19 @@ void select_table(){
     table[sl_table-1] = '-';
 
     for(int j=0 ; j<9;j++){
-        cout << table[j] << " ";
+        if(j%3 == 0){
+            cout << setw(28) << table[j];
+        }else{
+            cout<<setw(5) << table[j];
+        }
+        if((j+1)%3 == 0 && j != 0){
+            if((j+1) == 9){
+                cout << "\n";
+            }else{
+                cout << "\n\n";
+            }
+        }
     }
-    cout << endl;
     number_table_order(sl_table);
 }
 
@@ -219,15 +244,18 @@ void loop_order(vector<table_order> &thetable){
     int num;
     while (true)
     {
-        cout<<"---------------------------------------------------------\n";
-        cout<< "Select these choice \n[1] Add Order \n[2] Cancel Order \n[3] Exit "<<endl;
-        cout<<"Input Your choice : ";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<setw(44)<< "Select these choice\n";
+        cout<<setw(42)<< "[1] Add Order \n";
+        cout<<setw(45)<<"[2] Cancel Order \n";
+        cout<<setw(36)<<"[3] Exit "<<endl;
+        cout<<setw(44)<<"Input Your choice : ";
         cin >> num;
-        cout<<"---------------------------------------------------------\n";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
         switch (num)
         {
             case 1 :
-                cout<<"[1] Add Order Process"<<endl;
+                cout<<"[1] Add Order Process"<<endl; //เอาอยู่บ่?
                 add_table_order(thetable);
                 break;
 
@@ -242,8 +270,9 @@ void loop_order(vector<table_order> &thetable){
                 break;
     
             default:
-                cout<< "Error Select again"<<endl;
-                cout<<"---------------------------------------------------------\n";
+                cout<<setw(44)<< "Error Select again!!"<<endl;
+                //cout<<setw(63)<<"---------------------------------------------------------\n";
+
                 break;
         }
     }
@@ -252,48 +281,62 @@ void loop_order(vector<table_order> &thetable){
 
 void show_table_order(vector<table_order> thetable,vector<menubook> book)
 {
-    cout<<"---------------------------------------------------------\n\n";
-    cout <<setw(10)<<right<<"Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Quantity"<<endl;
+    cout<<setw(64)<<"---------------------------------------------------------\n\n";
+    cout <<setw(21)<<right<<"Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Quantity"<<endl;
     for (unsigned int i = 0; i < thetable.size(); i++)
     {
-        cout <<setw(10)<<right<<thetable[i].food_id;
+        cout <<setw(21)<<right<<thetable[i].food_id;
         int k= find_id(book,thetable[i].food_id);
         cout <<"\t"<<setw(15)<<left<<book[k].name; 
         cout <<setw(10)<<right<<thetable[i].order<<endl;
     }
-    cout<<"---------------------------------------------------------\n";
+    cout << endl;
+    //cout<<setw(63)<<"---------------------------------------------------------\n";
 }
 
 void number_table_order(int tb_num=0){
     int sl_table,count=0;
     if(tb_num==0)
     {
-        cout<<"---------------------------------------------------------\n";
-        for(int j=0 ; j<9;j++)
-        {
-            cout << table[j] << " ";
+        cout<<setw(63)<<"---------------------------------------------------------\n\n";
+        for(int j=0 ; j<9;j++){
+            if(j%3 == 0){
+                cout << setw(28) << table[j];
+            }else{
+                cout<<setw(5) << table[j];
+            }
+            if((j+1)%3 == 0 && j != 0){
+                if((j+1) == 9){
+                cout << "\n";
+                }else{
+                cout << "\n\n";
+                }
+            }
             if(table[j]!='-')
             {
             count++;
             }
+
         }
         cout << endl;
         if(count==9)
         {
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Sorry all table are used.\nPlease wait it empty." << endl;
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(45)<<"Sorry all table are used." <<"\n"; // maybe [please select table first]
+            cout<<setw(43)<<"Please wait it empty." << endl;
+            cout<<setw(63)<<"---------------------------------------------------------\n";
             return;
         }
         while(true)
         {
-            cout << "input table want to Order Menu : ";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout <<setw(50)<< "input table want to Order Menu : "; 
             cin >> sl_table;
             if (sl_table<1||sl_table>9)
             {
-                cout<<"---------------------------------------------------------\n";
-                cout<<"Don't have this table\n";
-                cout<<"---------------------------------------------------------\n";
+                cout<<setw(63)<<"---------------------------------------------------------\n";
+                cout<<setw(43)<<"Don't have this table\n";
+                //cout<<setw(63)<<"---------------------------------------------------------\n";
                 continue;
             }
         
@@ -303,9 +346,9 @@ void number_table_order(int tb_num=0){
             }
             else 
             {
-                cout<<"---------------------------------------------------------\n";
-                cout<<"Sorry this table is empty. Please select table again." << endl;
-                cout<<"---------------------------------------------------------\n";
+                cout<<setw(63)<<"---------------------------------------------------------\n";
+                cout<<setw(60)<<"Sorry this table is empty. Please select table again." << endl;
+                //cout<<setw(63)<<"---------------------------------------------------------\n";
                 continue;
             }
         }
@@ -318,9 +361,9 @@ void number_table_order(int tb_num=0){
     vec_point=which_table(sl_table);
     if(vec_point==NULL)
     {
-        cout<<"---------------------------------------------------------\n";
-        cout<<"Error table" << endl;
-        cout<<"---------------------------------------------------------\n";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<"Error table" << endl;//how to access
+        cout<<setw(63)<<"---------------------------------------------------------\n";
 
         return;
     }
@@ -374,7 +417,7 @@ void allmenu(){
     const unsigned char* text;
     bool done = false;
 
-    cout<<"---------------------------------------------------------\n\n";
+    cout<<"---------------------------------------------------------" << "\n\n";
     cout <<setw(10)<<right<<"Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Price"<<endl;
     while (!done) {
         switch (sqlite3_step(stmt)) {
@@ -535,19 +578,20 @@ void add_table_order(vector<table_order> &thetable)
     allmenu();
     int id,num,want;
     while(true){
-        cout << "Input order menu ID to add (If want to exit input 0) : ";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<setw(60)<< "Input order menu ID to add (If want to exit input 0) : "; // can use 03,04,0..
         cin >> id;
         if(id == 0) break;
         int x=find_id(book,id);
         //cout<<x<<endl;
         if(x==-1)
         {
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Don't have this ID in Menubook\n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(49)<<"Don't have this ID in Menubook\n";
+            //cout<<setw(63)<<"---------------------------------------------------------\n";
             continue;
         }
-        cout << "Input quantity order to add : ";
+        cout <<setw(47)<< "Input quantity order to add : ";
         cin >> num;
         if(num>0)
         {
@@ -556,8 +600,8 @@ void add_table_order(vector<table_order> &thetable)
         }
         else 
         {
-            cout << "Input quantity order Error \n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(48) << "Input quantity order Error!! \n";
         }       
     }
     return ;
@@ -569,15 +613,16 @@ void cancel_table_order(vector<table_order> &thetable )
     int id,num,quantity;
     if(thetable.size()==0)
     {
-        cout<<"---------------------------------------------------------\n";
-        cout<<"The Order is empty"<<endl;
-        cout<<"---------------------------------------------------------\n";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<setw(42)<<"The Order is empty"<<endl;
+       //cout<<setw(63)<<"---------------------------------------------------------\n";
         return;
     }
     show_table_order(thetable,book);
     while(true){
         bool done=true;
-        cout << "Input order menu ID to cancel(If want to exit input 0) : ";
+        cout<<setw(63)<<"---------------------------------------------------------\n";
+        cout<<setw(62)<< "Input order menu ID to cancel(If want to exit input 0) : ";
         cin >> id;
         if(id == 0) 
         {
@@ -587,38 +632,38 @@ void cancel_table_order(vector<table_order> &thetable )
         //cout<<x<<endl;
         if(x==-1)
         {
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Don't have this ID in Order\n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(49)<<"Don't have this ID in Order\n";
+            //cout<<setw(63)<<"---------------------------------------------------------\n";
             continue;
         }
         else if(thetable[x].order==0)
         {
-
-            cout<<"---------------------------------------------------------\n";
-            cout<<"Don't have this ID in Order\n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(47)<<"Don't have this ID in Order\n";
+            //cout<<setw(63)<<"---------------------------------------------------------\n";
             continue;
         }
 
         quantity = thetable[x].order;
-        cout << "Input quantity order to cancel "<<"[ 1 ~ "<<quantity<<" ] : ";
+        cout<<setw(45) << "Input quantity order to cancel "<<"[ 1 ~ "<<quantity<<" ] : ";
         cin >> num;
         if(num<=quantity&&quantity!=0&&num>0)
         {
-            done=vec_cancelorder(thetable,id,num);
+            done=vec_cancelorder(thetable,id,num);//>>how to access;
             show_table_order(thetable,book);
         }
         else 
         {
-            cout << "Input quantity order Error \n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(49)<< "Input quantity order Error \n";
+            
         }
         if(done==false)
         {
-            cout<<"---------------------------------------------------------\n";
-            cout << "Cancelorder order Error \n";
-            cout<<"---------------------------------------------------------\n";
+            cout<<setw(63)<<"---------------------------------------------------------\n";
+            cout<<setw(47)<< "Cancelorder order Error!! \n";//how to access
+            cout<<setw(63)<<"---------------------------------------------------------\n";
         } 
 
     }
@@ -734,19 +779,20 @@ void show_bill(vector<table_order> &note ,vector<menubook> book)
 {
     double sum=0;
 
-    cout <<"---------------------------------------------------------\n";
-    cout <<setw(10)<<right<<"Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Price";
-    cout <<setw(10)<<right<<"Quantity"<<setw(10)<<right<<"Total"<<endl;
+    cout<<setw(65)<<"___________________________________________________________\n";
+    cout<<setw(6)<<"|"<<setw(58)<<"|"<<endl;
+    cout <<setw(6)<<"|"<<setw(4)<<right<<" Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Price";
+    cout <<setw(10)<<right<<"Quantity"<<setw(10)<<right<<"Total"<<setw(3)<<"|"<<endl;
     for(unsigned int i=0 ;i<note.size();i++)
     {
         int j=find_id(book,note[i].food_id);
-        cout <<setw(10)<<right<<book[j].id<<"\t"<<setw(15)<<left <<book[j].name<<setw(10)<<right<<book[j].price;
-        cout <<setw(10)<<right<<note[i].order<<setw(10)<<right<<note[i].order*book[j].price<<endl;
+        cout <<setw(6)<<"|"<<setw(4)<<right<<book[j].id<<"\t"<<setw(15)<<left <<book[j].name<<setw(10)<<right<<book[j].price;
+        cout <<setw(10)<<right<<note[i].order<<setw(9)<<right<<note[i].order*book[j].price<<setw(4)<<"|"<<endl;
         sum+=note[i].order*book[j].price;
     }
-    cout <<"---------------------------------------------------------\n";
-    cout <<setw(10)<<right<<" "<<"\t"<<setw(15)<<left <<"SUM"<<setw(30)<<right<<sum<<endl;
-    cout <<"---------------------------------------------------------\n";
+    cout<<setw(65)<<"|_________________________________________________________|\n";
+    cout <<setw(6)<<"|"<<setw(4)<<right<<" "<<"\t"<<setw(15)<<left <<"SUM"<<setw(29)<<right<<sum <<setw(4)<<"|"<<endl;
+    cout<<setw(65)<<"|_________________________________________________________|\n";
     return;
 }
 
@@ -766,30 +812,47 @@ void table_bill(vector<daily_income> &daily)
     int number ,count=0 ;
     vector<table_order> *vec_point; 
     vec_point = which_table(number);
+    cout<<setw(64)<<"---------------------------------------------------------\n\n";
     for(int j=0 ; j<9;j++){
-        cout << table[j] << " ";
+        if(j%3 == 0){
+            cout << setw(28) << table[j];
+        }else{
+            cout<<setw(5) << table[j];
+        }
+        if((j+1)%3 == 0 && j != 0){
+            if((j+1) == 9){
+                cout << "\n";
+            }else{
+                cout << "\n\n";
+            }
+        }
         if(table[j]!='-')
         {
             count++;
         }
     }
     cout << endl;
+    cout<<setw(63)<<"---------------------------------------------------------\n";
     if(count==9)
     {
-        cout<<"All table are empty." << endl;
+        cout<<setw(43)<<"All table are empty." << endl;
+        cout<<setw(63)<<"---------------------------------------------------------\n";
         return;
     }
     while(true)
     {
-        cout << "input table want to check bill (If want to exit input 0): ";
+        cout<<setw(63)<< "input table want to check bill (If want to exit input 0): ";
         cin >> number ;
+        //cout<<setw(64)<<"---------------------------------------------------------\n\n";
         if(number==0)
         {  
             return;
         }
         else if(table[number-1]!='-')
         {
-           cout<<"Sorry this table are empty. Please select table again." << endl; 
+            cout<<setw(64)<<"---------------------------------------------------------\n\n";
+            cout<<setw(61)<<"Sorry this table are empty. Please select table again.\n" << endl;
+            cout<<setw(63)<<"---------------------------------------------------------\n"; 
         }
         else 
         {
@@ -921,7 +984,6 @@ void all_daily_income(){
     sqlite3_finalize(stmt);
 
 }
-
 void update_menubook(vector<menubook> &book)
 {
     
