@@ -299,9 +299,9 @@ void show_table_order(vector<table_order> thetable,vector<menubook> book)
     //cout<<setw(63)<<"---------------------------------------------------------\n";
 }
 
-void number_table_order(int tb_num=0){
+void number_table_order(int tb_num=0){ //รับค่า selecttable;
     int sl_table,count=0;
-    if(tb_num==0)
+    if(tb_num==0) //ADD ORDER BEFORE SELECT
     {
         cout<<setw(63)<<"---------------------------------------------------------\n\n";
         for(int j=0 ; j<9;j++){
