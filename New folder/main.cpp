@@ -125,7 +125,6 @@ void start(){
                 table_bill(daily);
                 break;
             case 4:
-                cout<<"4.Edit menu"<<endl;
                 edit_menu();
                 break;
             case 5:
@@ -146,11 +145,11 @@ void start(){
 	            cout << "\t\t\t\t\t        E       W       3            \n";
 	            cout << "\t\t\t\t\t  mmm   E               3   mmm      \n";
 	            cout << "\t\t\t\t\t m   m  E               3  m   m     \n";
-	            cout << "                  TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n";
-	            cout << "                  [[   ITT]  [TTTTD I\\  T  TTTP  IRRR  [TTT]  ITTTT]  IRRR    III   [\\  /]  ]]\n";
-	            cout << "                  [[   I---  [    D I \\ |  I__P  I___R [   ]  I --    I___R  I---I  I \\/ I  ]]\n";
-	            cout << "                  [[   I__]  L___D  I  \\|  I     I   R [___]  I____]  I   R  I   I  I    I  ]]\n";
-	            cout << "                  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
+	            cout << "                  TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n";
+	            cout << "                  [[   ITT]  I\\  T  [TTTD   TTTP  IRRR   [TTT]  ITTTT]  IRRR     III   [\\  /]   ]]\n";
+	            cout << "                  [[   I--   I \\ |  [    D  I__P  I___R  [   ]  I --    I___R   I---I  I \\/ I   ]]\n";
+	            cout << "                  [[   I__]  I  \\|  I___D   I     I    R [___]  I___]   I    R  I   I  I    I  ]]\n";
+	            cout << "                  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
                 cout<<setw(108)<<"-------------------------------------------------------------------------------------------------------------\n\n";
                 break;
             default:
@@ -529,9 +528,17 @@ void addmenu(){
     sqlite3_stmt * stmt;
     
     string name,price;
-    cout << "Input food name : ";
+    cout<<setw(56)<<"             ___  "<<endl;
+    cout<<setw(57)<<"            /. .\\__"<<endl;
+    cout<<setw(58)<<"           /      _\\"<<endl;
+    cout<<setw(63)<<"      __   \\  _____/   __"<<endl;
+    cout<<setw(70)<<"  ___/__\\__|___|______/__\\______"<<setw(30) << "Input food name : ";
     cin >> name ;
-    cout << "Input food price : ";
+    cout<<setw(56)<<"             ___  "<<endl;
+    cout<<setw(57)<<"            /. .\\__"<<endl;
+    cout<<setw(58)<<"           /      o\\"<<endl;
+    cout<<setw(63)<<"      __   \\  _____/   __"<<endl;
+    cout<<setw(70)<<"  ___/__\\__|___|______/__\\______"<<setw(30)<< "Input food price : ";
     cin >> price ;
 
     string sqlstatement = "INSERT INTO menu (food_name, price) VALUES ('" + name + "','" + price + "');";
@@ -561,13 +568,18 @@ void deletemenu(){
         return ;
     }
     string id;
-    cout << "Input food ID : ";
+    cout<<"\n";
+    cout<<setw(57)<<"      _____"<<endl;
+    cout<<setw(60)<<"___   / . . \\__"<<endl;
+    cout<<setw(60)<<"/   \\  \\/      V"<<endl;
+    cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID : ";
     cin >> id;
     sqlite3_stmt * stmt;
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
     sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
     update_menubook(book);
+   
 }
 
 void edit_menu(){
@@ -575,13 +587,17 @@ void edit_menu(){
     bool done=true;
     while(done){
         cout<<setw(44)<<"___________________________________"<<endl;
-        cout<<setw(10)<<"|"<<  "---> what you want to edit <---"<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
+        cout<<setw(10)<<"|"<<  "     what you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
         cout<<setw(10)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(51)<<"(> *v* <)"<<endl; //Add menu in database
-        cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"<---/   .   \\"<<endl; // Delete menu in database
+        cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"    /   .   \\"<<endl; // Delete menu in database
         cout<<setw(10)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(52)<<"('')___('')"<<endl;  //Show menu in book
         cout<<setw(10)<<"|"<<"     4.Go back ( press 4 )"<<setw(8)<<"|"<<endl;
-        cout<<setw(44)<<"|_________________________________|"<<setw(48)<<"<------------Input your choice :    ";;
+        cout<<setw(44)<<"|_________________________________|"<<setw(48)<<"<------------Input your choice :    ";
         cin >> select;
+        cout<<"\n\n";
+        cout<<setw(120)<<"---------------------------------------------------------------------------------------------------------------------------------------------\n"<<endl;
+
+         
 
         switch (select)
             {
@@ -993,11 +1009,8 @@ void print_daily_income(vector<daily_income> daily)
     cout <<setw(15)<<right<<"Date"<<"\t"<<setw(30)<<right<<"income"<<endl;
     for(unsigned int i=0;i<daily.size();i++)
     {
-        cout<<setw(15)<<right<<daily[i].date<<"\t"<<setw(30)<<right<<daily[i].income<<endl;
+        cout<<setw(17)<<right<<daily[i].date<<"\t"<<setw(21)<<right<<daily[i].income<<endl;
     }
-    cout<<setw(18)<<right<<"     ^     "<<"\t"<<setw(25)<<right<<"     ^     "<<endl;
-    cout<<setw(18)<<right<<"-____|____-"<<"\t"<<setw(25)<<right<<"-____|____-"<<endl;
-    cout<<setw(18)<<right<<"(  ='o'=  )"<<"\t"<<setw(27)<<right<<"( _$ o $_ )\n\n";
     cout<<"---------------------------------------------------------\n";
     return ;
 
@@ -1110,8 +1123,10 @@ void update_menubook(vector<menubook> &book)
     
     book.clear();
     push_menubook(book);
-    cout<<"Menubook is update"<<endl;
+    cout<<setw(97)<<"|        Menubook is update         |"<<endl;
+    cout<<setw(97)<<"====================================="<<endl;
     printmenubook(book);
+    cout<<setw(108)<<"------------------------------------------------------------------------------------------------------------------------------------------------\n";
     return;
 }
 
@@ -1150,7 +1165,9 @@ void push_menubook(vector<menubook> &book){
             
             case SQLITE_DONE:
                 done = true;
-                cout<<"Push Menubook Successfully!"<<endl;
+                cout<<"\n";
+                cout<<setw(96)<<"===================================="<<endl;
+                cout<<setw(97)<<"|    Push Menubook Successfully!    |"<<endl;
                 break;
 
             default:
