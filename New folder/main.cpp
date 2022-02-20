@@ -619,7 +619,8 @@ void checkbill(){
 
 void add_table_order(vector<table_order> &thetable)
 {
-    allmenu(); //ใช้ปริ้นMenuแทนได้ไหม;
+    printmenubook(book);
+    //allmenu(); //ใช้ปริ้นMenuแทนได้ไหม;
     int id,num,want;
     while(true){
         //cout<<setw(63)<<"---------------------------------------------------------\n";
