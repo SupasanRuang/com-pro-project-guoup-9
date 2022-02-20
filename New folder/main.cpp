@@ -133,9 +133,25 @@ void start(){
                 break; 
             case 6:
                 done = false;
-                cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
-                cout<<setw(62)<< "Ending Program"<<endl;
-                cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+                cout<<setw(108)<<"-------------------------------------------------------------------------------------------------------------\n\n";
+                cout<<setw(63)<<"                ()_()    "<<endl;
+                cout<<setw(59)<<"                /   \\"<<endl;
+                cout<<setw(62)<<"               ( 'v' )  "<<endl;
+                cout<<setw(60)<<"               <(___)>"<<endl;       
+                cout<<setw(61)<<"               _''_''_ "<<endl;
+                cout << "\t\t\t\t\t        mmmm         mmmm            \n";
+	            cout << "\t\t\t\t\t       E    3mmmmmmmE    3           \n";
+	            cout << "\t\t\t\t\t        E               3            \n";
+	            cout << "\t\t\t\t\t        E   X       X   3            \n";
+	            cout << "\t\t\t\t\t        E       W       3            \n";
+	            cout << "\t\t\t\t\t  mmm   E               3   mmm      \n";
+	            cout << "\t\t\t\t\t m   m  E               3  m   m     \n";
+	            cout << "                  TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n";
+	            cout << "                  [[   ITT]  [TTTTD I\\  T  TTTP  IRRR  [TTT]  ITTTT]  IRRR    III   [\\  /]  ]]\n";
+	            cout << "                  [[   I---  [    D I \\ |  I__P  I___R [   ]  I --    I___R  I---I  I \\/ I  ]]\n";
+	            cout << "                  [[   I__]  L___D  I  \\|  I     I   R [___]  I____]  I   R  I   I  I    I  ]]\n";
+	            cout << "                  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
+                cout<<setw(108)<<"-------------------------------------------------------------------------------------------------------------\n\n";
                 break;
             default:
                 cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
@@ -520,12 +536,13 @@ void edit_menu(){
     int select;
     bool done=true;
     while(done){
-        cout << "what you want to edit\n";
-        cout <<"1.Add menu ( press 1 )\n"; //Add menu in database
-        cout<<"2.Delete menu ( press 2 )\n"; // Delete menu in database
-        cout<<"3.Show menu ( press 3 )\n";  //Show menu in book
-        cout<<"4.Go back ( press 4 )\n";
-        cout<<"Input your choice : ";
+        cout<<setw(44)<<"___________________________________"<<endl;
+        cout<<setw(10)<<"|"<<  "---> what you want to edit <---"<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
+        cout<<setw(10)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(51)<<"(> *v* <)"<<endl; //Add menu in database
+        cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"<---/   .   \\"<<endl; // Delete menu in database
+        cout<<setw(10)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(52)<<"('')___('')"<<endl;  //Show menu in book
+        cout<<setw(10)<<"|"<<"     4.Go back ( press 4 )"<<setw(8)<<"|"<<endl;
+        cout<<setw(44)<<"|_________________________________|"<<setw(48)<<"<------------Input your choice :    ";;
         cin >> select;
 
         switch (select)
@@ -878,11 +895,18 @@ void table_bill(vector<daily_income> &daily)
 void print_daily_income(vector<daily_income> daily)
 {
     cout<<"---------------------------------------------------------\n";
-    cout <<setw(15)<<right<<"Date"<<"\t"<<setw(10)<<right<<"income"<<endl;
+    cout<<setw(18)<<right<<"(> '' '' <)"<<"\t"<<setw(22)<<right<<",_____,"<<endl;
+    cout<<setw(18)<<right<<"(  ='o'=  )"<<"\t"<<setw(22)<<right<<"[ o.O ]"<<endl;
+    cout<<setw(18)<<right<<"-(,,)-(,,)-"<<"\t"<<setw(22)<<right<<"\\(____("<<endl;
+    cout<<setw(18)<<right<<"-_________-"<<"\t"<<setw(22)<<right<<"_''__''_"<<endl;
+    cout <<setw(15)<<right<<"Date"<<"\t"<<setw(30)<<right<<"income"<<endl;
     for(unsigned int i=0;i<daily.size();i++)
     {
-        cout<<setw(15)<<right<<daily[i].date<<"\t"<<setw(10)<<right<<daily[i].income<<endl;
+        cout<<setw(15)<<right<<daily[i].date<<"\t"<<setw(30)<<right<<daily[i].income<<endl;
     }
+    cout<<setw(18)<<right<<"     ^     "<<"\t"<<setw(25)<<right<<"     ^     "<<endl;
+    cout<<setw(18)<<right<<"-____|____-"<<"\t"<<setw(25)<<right<<"-____|____-"<<endl;
+    cout<<setw(18)<<right<<"(  ='o'=  )"<<"\t"<<setw(27)<<right<<"( _$ o $_ )\n\n";
     cout<<"---------------------------------------------------------\n";
     return ;
 
