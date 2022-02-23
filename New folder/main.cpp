@@ -534,7 +534,8 @@ void addmenu(){
     cout<<setw(58)<<"           /      _\\"<<endl;
     cout<<setw(63)<<"      __   \\  _____/   __"<<endl;
     cout<<setw(70)<<"  ___/__\\__|___|______/__\\______"<<setw(30) << "Input food name : ";
-    cin >> name ;
+    cin.ignore();
+    getline(cin,name);
     cout<<setw(56)<<"             ___  "<<endl;
     cout<<setw(57)<<"            /. .\\__"<<endl;
     cout<<setw(58)<<"           /      o\\"<<endl;
@@ -588,7 +589,7 @@ void edit_menu(){
     bool done=true;
     while(done){
         cout<<setw(44)<<"___________________________________"<<endl;
-        cout<<setw(10)<<"|"<<  "     what you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
+        cout<<setw(10)<<"|"<<  "     What you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl<<endl;
         cout<<setw(10)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(51)<<"(> *v* <)"<<endl; //Add menu in database
         cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"    /   .   \\"<<endl; // Delete menu in database
         cout<<setw(10)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(52)<<"('')___('')"<<endl;  //Show menu in book
@@ -1125,6 +1126,7 @@ void all_daily_income(){
     sqlite3_finalize(stmt);
 
 }
+
 void update_menubook(vector<menubook> &book)
 {
     
