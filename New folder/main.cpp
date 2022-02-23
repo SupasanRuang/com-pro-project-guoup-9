@@ -83,6 +83,7 @@ int main()
     
     pull_daily_income(daily);
     push_menubook(book);
+
     cout<<"printmenubook\n";  
     printmenubook(book);
     start();
@@ -148,7 +149,7 @@ void start(){
 	            cout << "                  TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT\n";
 	            cout << "                  [[   ITT]  I\\  T  [TTTD   TTTP  IRRR   [TTT]  ITTTT]  IRRR     III   [\\  /]   ]]\n";
 	            cout << "                  [[   I--   I \\ |  [    D  I__P  I___R  [   ]  I --    I___R   I---I  I \\/ I   ]]\n";
-	            cout << "                  [[   I__]  I  \\|  I___D   I     I    R [___]  I___]   I    R  I   I  I    I  ]]\n";
+	            cout << "                  [[   I__]  I  \\|  I___D   I     I    R [___]  I___]   I    R  I   I  I    I   ]]\n";
 	            cout << "                  LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
                 cout<<setw(108)<<"-------------------------------------------------------------------------------------------------------------\n\n";
                 break;
@@ -749,7 +750,12 @@ void cancel_table_order(vector<table_order> &thetable )
         }
 
         quantity = thetable[x].order;
-        cout<<setw(79) << "INPUT QUANTITY ORDER TO CANCEL "<<"[ 1 ~ "<<quantity<<" ] : ";
+        cout<<"\n"<<endl;
+        cout<<setw(7)<<" "<<"                      _____"<<endl;
+        cout<<setw(7)<<" "<<"          ___  ___  /  o o "<<"\\"<<"__"<<endl;
+        cout<<setw(7)<<" "<<"        /    "<<"\\"<<"    "<<"\\"<<" "<<"\\"<<"/        O"<<endl;
+        cout<<setw(7)<<" "<<"_____\\/______"<<"\\"<<"____"<<"\\"<<"|_______V/_______";
+        cout<<setw(25) <<"     INPUT QUANTITY ORDER TO CANCEL "<<"[ 1 ~ "<<quantity<<" ] : ";
         cin >> num;
         if(num<=quantity&&quantity!=0&&num>0)
         {
@@ -1001,17 +1007,18 @@ void table_bill(vector<daily_income> &daily)
 
 void print_daily_income(vector<daily_income> daily)
 {
-    cout<<"---------------------------------------------------------\n";
-    cout<<setw(18)<<right<<"(> '' '' <)"<<"\t"<<setw(22)<<right<<",_____,"<<endl;
-    cout<<setw(18)<<right<<"(  ='o'=  )"<<"\t"<<setw(22)<<right<<"[ o.O ]"<<endl;
-    cout<<setw(18)<<right<<"-(,,)-(,,)-"<<"\t"<<setw(22)<<right<<"\\(____("<<endl;
-    cout<<setw(18)<<right<<"-_________-"<<"\t"<<setw(22)<<right<<"_''__''_"<<endl;
-    cout <<setw(15)<<right<<"Date"<<"\t"<<setw(30)<<right<<"income"<<endl;
+    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
+    cout<<setw(50)<<right<<"(> '' '' <)"<<"\t"<<setw(30)<<right<<",_____,"<<endl;
+    cout<<setw(50)<<right<<"(  ='o'=  )"<<"\t"<<setw(30)<<right<<"[ o.O ]"<<endl;
+    cout<<setw(50)<<right<<"-(,,)-(,,)-"<<"\t"<<setw(30)<<right<<"\\(____("<<endl;
+    cout<<setw(50)<<right<<"-_________-"<<"\t"<<setw(30)<<right<<"_''__''_"<<endl;
+    cout <<setw(46)<<right<<"Date"<<"\t"<<setw(38)<<right<<"income"<<endl;
     for(unsigned int i=0;i<daily.size();i++)
     {
-        cout<<setw(17)<<right<<daily[i].date<<"\t"<<setw(21)<<right<<daily[i].income<<endl;
+        cout<<setw(49)<<right<<daily[i].date<<"\t"<<setw(29)<<right<<daily[i].income<<endl;
     }
-    cout<<"---------------------------------------------------------\n";
+    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
+    cout<<"______________________________________________________________________________________________________________________________________________________________\n";
     return ;
 
 }
