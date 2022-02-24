@@ -616,6 +616,7 @@ void deletemenu(){ //edit
     cin >> id;
     cout<<endl;
     cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     sqlite3_stmt * stmt;
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
@@ -628,6 +629,7 @@ void edit_menu(){ //edit
     int select;
     bool done=true;
     while(done){
+
         cout<<setw(50)<<"___________________________________"<<endl;
         cout<<setw(16)<<"|"<<"     -WHAT YOU WANT TO EDIT-   "<<setw(3)<<"|"<<setw(31)<<"("<<"\\"<<"_____/)"<<endl;
         cout<<setw(16)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(39)<<"(> *v* <)"<<endl; //Add menu in database
@@ -1052,7 +1054,9 @@ void print_daily_income(vector<daily_income> daily)
     {
         cout<<setw(39)<<right<<daily[i].date<<"\t"<<setw(37)<<right<<daily[i].income<<endl;
     }
+
     cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     return ;
 
 }
@@ -1171,6 +1175,7 @@ void update_menubook(vector<menubook> &book)
     printmenubook(book);
     cout<<endl;
     cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     return;
 }
 
