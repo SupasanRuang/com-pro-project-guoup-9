@@ -570,18 +570,32 @@ void deletemenu(){
         return ;
     }
     string id;
-    cout<<"\n";
-    cout<<setw(57)<<"      _____"<<endl;
-    cout<<setw(60)<<"___   / . . \\__"<<endl;
-    cout<<setw(60)<<"/   \\  \\/      V"<<endl;
-    cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID : ";
-    cin >> id;
-    sqlite3_stmt * stmt;
-    string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
-    sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
-    sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
-    update_menubook(book);
-   
+    
+    while(true){
+        cout<<"\n";
+        cout<<setw(57)<<"      _____"<<endl;
+        cout<<setw(60)<<"___   / . . \\__"<<endl;
+        cout<<setw(60)<<"/   \\  \\/      V"<<endl;
+        cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID (If want to exit input 0) : ";
+        cin >> id;
+
+        if(id == "0") break;
+
+        int id_int = stoi(id);
+        int x=find_id(book,id_int);
+        
+        if(x != -1){
+            sqlite3_stmt * stmt;
+            string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
+            sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
+            sqlite3_exec(db, sqlstatement.c_str(), callback, 0, NULL);
+            update_menubook(book);
+            break;
+        }else{
+            cout << "Not have this ID in menu";
+        }
+    }
+
 }
 
 void edit_menu(){
