@@ -124,6 +124,7 @@ void start(){
                 table_bill(daily);
                 break;
             case 4:
+                cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
                 edit_menu();
                 break;
             case 5:
@@ -531,23 +532,25 @@ void showmenu(int id){
     sqlite3_finalize(stmt);
 }
 
-void addmenu(){
+void addmenu(){ //edit
     sqlite3_stmt * stmt;
     
     string name,price;
-    cout<<setw(56)<<"             ___  "<<endl;
-    cout<<setw(57)<<"            /. .\\__"<<endl;
-    cout<<setw(58)<<"           /      _\\"<<endl;
-    cout<<setw(63)<<"      __   \\  _____/   __"<<endl;
-    cout<<setw(70)<<"  ___/__\\__|___|______/__\\______"<<setw(30) << "Input food name : ";
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+    cout<<setw(37)<<"             ___  "<<endl;
+    cout<<setw(38)<<"            /. .\\__"<<endl;
+    cout<<setw(39)<<"           /      _\\"<<endl;
+    cout<<setw(44)<<"      __   \\  _____/   __"<<endl;
+    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(30) << "INPUT FOOD NAME : ";
     cin.ignore();
     getline(cin,name);
-    cout<<setw(56)<<"             ___  "<<endl;
-    cout<<setw(57)<<"            /. .\\__"<<endl;
-    cout<<setw(58)<<"           /      o\\"<<endl;
-    cout<<setw(63)<<"      __   \\  _____/   __"<<endl;
-    cout<<setw(70)<<"  ___/__\\__|___|______/__\\______"<<setw(30)<< "Input food price : ";
+    cout<<setw(37)<<"             ___  "<<endl;
+    cout<<setw(38)<<"            /. .\\__"<<endl;
+    cout<<setw(39)<<"           /      o\\"<<endl;
+    cout<<setw(44)<<"      __   \\  _____/   __"<<endl;
+    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(31)<< "INPUT FOOD PRICE : ";
     cin >> price ;
+    cout<<endl;
 
     string sqlstatement = "INSERT INTO menu (food_name, price) VALUES ('" + name + "','" + price + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
@@ -556,8 +559,9 @@ void addmenu(){
     
 }
 
-void deletemenu(){
-     cout<<setw(100)<<"_________________________________________\n";
+void deletemenu(){ //edit
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+    cout<<setw(100)<<"_________________________________________\n";
     cout<<setw(59)<<"|"<<setw(41)<<"|\n";
     cout<<setw(59)<<"|"<<setw(24)<<"MENU BOOK"<<setw(17)<<"|\n";
     cout<<setw(100)<<"|_______________________________________|\n";
@@ -585,7 +589,7 @@ void deletemenu(){
     cout <<endl;
     for(int j=0 ; j<9;j++){
         if(j%3 == 0){
-            cout << setw(73) << table[j];
+            cout << setw(29) << table[j];
         }else{
             cout<<setw(8) << table[j];
         }
@@ -597,19 +601,22 @@ void deletemenu(){
             }
         }
     }
-    cout<<setw(10)<<"                                                            -------------------------------------------------"<<endl;
-    cout<<setw(10)<<"                                                            | These are used table. Wait all table are empty | "<<endl; 
-    cout<<setw(10)<<"                                                            -------------------------------------------------\n"<<endl;
+    cout<<setw(10)<<" "<<setw(55)<<"--------------------------------------------------"<<endl;
+    cout<<setw(10)<<" "<<setw(56)<<"| These are used table. Wait all table are empty | "<<endl; 
+    cout<<setw(10)<<" "<<setw(56)<<"--------------------------------------------------\n"<<endl;
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
         return ;
     }
     string id;
     cout<<"\n";
-    cout<<setw(57)<<"      _____"<<endl;
-    cout<<setw(60)<<"___   / . . \\__"<<endl;
-    cout<<setw(60)<<"/   \\  \\/      V"<<endl;
-    cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID : ";
+    cout<<setw(37)<<"      _____"<<endl;
+    cout<<setw(40)<<"___   / . . \\__"<<endl;
+    cout<<setw(40)<<"/   \\  \\/      V"<<endl;
+    cout<<setw(50)<<"__________/_____\\_|_______/__________"<<setw(25)<< "INPUT FOOD ID : ";
     cin >> id;
-    cout<<setw(120)<<"--------------------------------------------------------------------------------------------------------------\n"<<endl;
+    cout<<endl;
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     sqlite3_stmt * stmt;
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
@@ -618,21 +625,20 @@ void deletemenu(){
    
 }
 
-void edit_menu(){
+void edit_menu(){ //edit
     int select;
     bool done=true;
     while(done){
-        cout<<setw(120)<<"-------------------------------------------------------------------------------------------------------------------------\n"<<endl;
-        cout<<setw(44)<<"___________________________________"<<endl;
-        cout<<setw(10)<<"|"<<  "     What you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
-        cout<<setw(10)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(51)<<"(> *v* <)"<<endl; //Add menu in database
-        cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"    /   .   \\"<<endl; // Delete menu in database
-        cout<<setw(10)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(52)<<"('')___('')"<<endl;  //Show menu in book
-        cout<<setw(10)<<"|"<<"     4.Go back ( press 4 )"<<setw(8)<<"|"<<endl;
-        cout<<setw(44)<<"|_________________________________|"<<setw(48)<<"<------------Input your choice :    ";
+
+        cout<<setw(50)<<"___________________________________"<<endl;
+        cout<<setw(16)<<"|"<<"     -WHAT YOU WANT TO EDIT-   "<<setw(3)<<"|"<<setw(31)<<"("<<"\\"<<"_____/)"<<endl;
+        cout<<setw(16)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(39)<<"(> *v* <)"<<endl; //Add menu in database
+        cout<<setw(16)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(39)<<"    /   .   \\"<<endl; // Delete menu in database
+        cout<<setw(16)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(40)<<"('')___('')"<<endl;  //Show menu in book
+        cout<<setw(16)<<"|"<<"     4.Go back ( press 4 )"<<setw(8)<<"|"<<endl;
+        cout<<setw(50)<<"|_________________________________|"<<setw(44)<<"Input your choice : ";
         cin >> select;
-        cout<<"\n\n";
-        cout<<setw(120)<<"-------------------------------------------------------------------------------------------------------------------------\n"<<endl;
+        cout<<"\n";
          
 
         switch (select)
@@ -644,9 +650,14 @@ void edit_menu(){
                     deletemenu();
                     break;
                 case 3:
+                    cout<<endl;
+                    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
                     printmenubook(book);
+                    cout<<endl;
+                    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
                     break;
                 case 4:
+                    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
                     done = false;
                     break;
                 default:
@@ -1032,17 +1043,20 @@ void table_bill(vector<daily_income> &daily)
 
 void print_daily_income(vector<daily_income> daily)
 {
-    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
-    cout<<setw(50)<<right<<"(> '' '' <)"<<"\t"<<setw(30)<<right<<",_____,"<<endl;
-    cout<<setw(50)<<right<<"(  ='o'=  )"<<"\t"<<setw(30)<<right<<"[ o.O ]"<<endl;
-    cout<<setw(50)<<right<<"-(,,)-(,,)-"<<"\t"<<setw(30)<<right<<"\\(____("<<endl;
-    cout<<setw(50)<<right<<"-_________-"<<"\t"<<setw(30)<<right<<"_''__''_"<<endl;
-    cout <<setw(46)<<right<<"Date"<<"\t"<<setw(38)<<right<<"income"<<endl;
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+    cout<<setw(40)<<right<<"(> '' '' <)"<<"\t"<<setw(30)<<right<<",_____,"<<endl;
+    cout<<setw(40)<<right<<"(  ='o'=  )"<<"\t"<<setw(30)<<right<<"[ o.O ]"<<endl;
+    cout<<setw(40)<<right<<"-(,,)-(,,)-"<<"\t"<<setw(30)<<right<<"\\(____("<<endl;
+    cout<<setw(40)<<right<<"-_________-"<<"\t"<<setw(30)<<right<<"_''__''_"<<endl;
+    cout<<endl;
+    cout <<setw(36)<<right<<"Date"<<"\t"<<setw(38)<<right<<"income"<<endl;
     for(unsigned int i=0;i<daily.size();i++)
     {
-        cout<<setw(49)<<right<<daily[i].date<<"\t"<<setw(29)<<right<<daily[i].income<<endl;
+        cout<<setw(39)<<right<<daily[i].date<<"\t"<<setw(37)<<right<<daily[i].income<<endl;
     }
-    cout<<"-------------------------------------------------------------------------------------------------------------------------------------\n";
+
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     return ;
 
 }
@@ -1159,7 +1173,9 @@ void update_menubook(vector<menubook> &book)
     cout<<setw(97)<<"|        Menubook is update         |"<<endl;
     cout<<setw(97)<<"====================================="<<endl;
     printmenubook(book);
-    cout<<setw(108)<<"-------------------------------------------------------------------------------------------------------------------------\n";
+    cout<<endl;
+    cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+
     return;
 }
 
