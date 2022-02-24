@@ -541,15 +541,21 @@ void addmenu(){ //edit
     cout<<setw(38)<<"            /. .\\__"<<endl;
     cout<<setw(39)<<"           /      _\\"<<endl;
     cout<<setw(44)<<"      __   \\  _____/   __"<<endl;
-    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(30) << "INPUT FOOD NAME ( if want to exit input 0 ) : ";
+
+    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(52) << "INPUT FOOD NAME ( if want to exit input 0 ) : ";
     cin.ignore();
     getline(cin,name);
-    if(name == "0") return;
+    if(name == "0"){
+        cout<<endl;
+        cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+        return;
+    } 
+
     cout<<setw(37)<<"             ___  "<<endl;
     cout<<setw(38)<<"            /. .\\__"<<endl;
     cout<<setw(39)<<"           /      o\\"<<endl;
     cout<<setw(44)<<"      __   \\  _____/   __"<<endl;
-    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(31)<< "INPUT FOOD PRICE : ";
+    cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(25)<< "INPUT FOOD PRICE : ";
     cin >> price ;
     cout<<endl;
 
@@ -612,13 +618,18 @@ void deletemenu(){ //edit
     
     while(true){
         cout<<"\n";
-        cout<<setw(57)<<"      _____"<<endl;
-        cout<<setw(60)<<"___   / . . \\__"<<endl;
-        cout<<setw(60)<<"/   \\  \\/      V"<<endl;
-        cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID (If want to exit input 0) : ";
+
+        cout<<setw(39)<<"      _____"<<endl;
+        cout<<setw(42)<<"___   / . . \\__"<<endl;
+        cout<<setw(42)<<"/   \\  \\/      V"<<endl;
+        cout<<setw(47)<<"______/_____\\_|_______/_____"<<setw(52)<< "INPUT FOOD ID (If want to exit input 0) : ";
         cin >> id;
 
-        if(id == "0") break;
+        if(id == "0"){
+            cout << endl;
+            cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
+            break;
+        }
 
         int id_int = stoi(id);
         int x=find_id(book,id_int);
@@ -631,7 +642,12 @@ void deletemenu(){ //edit
             update_menubook(book);
             break;
         }else{
-            cout << "Not have this ID in menu";
+
+            cout<<"\n\n";
+            cout<<setw(108)<<"---------------------------------------------------\n";
+            cout<<setw(93)<< "Not have this ID in menu"<<endl;
+            cout<<setw(108)<<"---------------------------------------------------\n";
+
         }
     }
    
