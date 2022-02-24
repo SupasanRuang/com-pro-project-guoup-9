@@ -82,9 +82,7 @@ int main()
     }
     
     pull_daily_income(daily);
-    push_menubook(book);
-
-    cout<<"printmenubook\n";  
+    push_menubook(book); 
     printmenubook(book);
     start();
 
@@ -551,6 +549,20 @@ void addmenu(){
 }
 
 void deletemenu(){
+     cout<<setw(100)<<"_________________________________________\n";
+    cout<<setw(59)<<"|"<<setw(41)<<"|\n";
+    cout<<setw(59)<<"|"<<setw(24)<<"MENU BOOK"<<setw(17)<<"|\n";
+    cout<<setw(100)<<"|_______________________________________|\n";
+    cout<<setw(59)<<"|"<<setw(41)<<"|\n";
+    cout<<setw(59)<<"|" <<setw(8)<<right<<"Food ID"<<"\t"<<setw(15)<<left <<"Food Name"<<setw(10)<<right<<"Price"<<setw(2)<<"|"<<endl;
+    for (unsigned int i = 0; i < book.size(); i++)
+    {
+        cout<<setw(59)<<"|"<<" "<<book[i].id;
+        cout <<"\t\t"<<setw(15)<<left<<book[i].name; 
+        cout <<setw(10)<<right<<book[i].price<<setw(2)<<"|"<<endl;
+
+    }
+    cout<<setw(100)<<"|_______________________________________|\n";
     bool no_empty= false;
     for (int i = 0; i < 9; i++)
     {
@@ -562,11 +574,24 @@ void deletemenu(){
     }
     if(no_empty)
     {
-       for (int i = 0; i < 9; i++)
-        {
-            cout<<table[i]<<" ";
+    cout <<endl;
+    for(int j=0 ; j<9;j++){
+        if(j%3 == 0){
+            cout << setw(73) << table[j];
+        }else{
+            cout<<setw(8) << table[j];
         }
-        cout<<"\nThese are used table. Wait all table are empty "<<endl; 
+        if((j+1)%3 == 0 && j != 0){
+            if((j+1) == 9){
+                cout << "\n\n";
+            }else{
+                cout << "\n\n\n";
+            }
+        }
+    }
+    cout<<setw(10)<<"                                                            -------------------------------------------------"<<endl;
+    cout<<setw(10)<<"                                                            | These are used table. Wait all table are empty | "<<endl; 
+    cout<<setw(10)<<"                                                            -------------------------------------------------\n"<<endl;
         return ;
     }
     string id;
@@ -576,6 +601,7 @@ void deletemenu(){
     cout<<setw(60)<<"/   \\  \\/      V"<<endl;
     cout<<setw(70)<<"_/_____\\_|_______/__________"<<setw(25)<< "Input food ID : ";
     cin >> id;
+    cout<<setw(120)<<"-------------------------------------------------------------------------------------------------------------------------------------\n"<<endl;
     sqlite3_stmt * stmt;
     string sqlstatement = "DELETE FROM menu WHERE food_id = ('" + id + "');";
     sqlite3_prepare( db, sqlstatement.c_str(), -1, &stmt, NULL );//preparing the statement
@@ -588,8 +614,9 @@ void edit_menu(){
     int select;
     bool done=true;
     while(done){
+        cout<<setw(120)<<"------------------------------------------------------------------------------------------------------------------------------------------------\n"<<endl;
         cout<<setw(44)<<"___________________________________"<<endl;
-        cout<<setw(10)<<"|"<<  "     What you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl<<endl;
+        cout<<setw(10)<<"|"<<  "     What you want to edit     "<<setw(3)<<"|"<<setw(43)<<"("<<"\\"<<"_____/)"<<endl;
         cout<<setw(10)<<"|"<<"     1.Add menu ( press 1 )"<<setw(7)<<"|"<<setw(51)<<"(> *v* <)"<<endl; //Add menu in database
         cout<<setw(10)<<"|"<<"     2.Delete menu ( press 2 )"<<setw(4)<<"|"<<setw(51)<<"    /   .   \\"<<endl; // Delete menu in database
         cout<<setw(10)<<"|"<<"     3.Show menu ( press 3 )"<<setw(6)<<"|"<<setw(52)<<"('')___('')"<<endl;  //Show menu in book
@@ -597,7 +624,7 @@ void edit_menu(){
         cout<<setw(44)<<"|_________________________________|"<<setw(48)<<"<------------Input your choice :    ";
         cin >> select;
         cout<<"\n\n";
-        cout<<setw(120)<<"---------------------------------------------------------------------------------------------------------------------------------------------\n"<<endl;
+        cout<<setw(120)<<"-----------------------------------------------------------------------------------------------------------------------------------------------\n"<<endl;
 
          
 
@@ -616,9 +643,9 @@ void edit_menu(){
                     done = false;
                     break;
                 default:
-                    cout<<"---------------------------------------------------------\n";
-                    cout<< "Error Select again"<<endl;
-                    cout<<"---------------------------------------------------------\n";
+                    cout<<setw(108)<<"---------------------------------------------\n";
+                    cout<<setw(93)<< "Error Select again"<<endl;
+                    cout<<setw(108)<<"---------------------------------------------\n";
                     break;
             }
     }
@@ -1132,6 +1159,7 @@ void update_menubook(vector<menubook> &book)
     
     book.clear();
     push_menubook(book);
+    cout<<setw(97)<<"====================================="<<endl;
     cout<<setw(97)<<"|        Menubook is update         |"<<endl;
     cout<<setw(97)<<"====================================="<<endl;
     printmenubook(book);
@@ -1177,6 +1205,7 @@ void push_menubook(vector<menubook> &book){
                 cout<<"\n";
                 cout<<setw(96)<<"===================================="<<endl;
                 cout<<setw(97)<<"|    Push Menubook Successfully!    |"<<endl;
+                cout<<setw(96)<<"===================================="<<endl;
                 break;
 
             default:
