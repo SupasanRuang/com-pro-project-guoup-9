@@ -541,6 +541,7 @@ void addmenu(){ //edit
     cout<<setw(38)<<"            /. .\\__"<<endl;
     cout<<setw(39)<<"           /      _\\"<<endl;
     cout<<setw(44)<<"      __   \\  _____/   __"<<endl;
+
     cout<<setw(51)<<"______/__\\__|___|______/__\\______"<<setw(52) << "INPUT FOOD NAME ( if want to exit input 0 ) : ";
     cin.ignore();
     getline(cin,name);
@@ -549,6 +550,7 @@ void addmenu(){ //edit
         cout<<setw(108)<<"--------------------------------------------------------------------------------------------------------\n";
         return;
     } 
+
     cout<<setw(37)<<"             ___  "<<endl;
     cout<<setw(38)<<"            /. .\\__"<<endl;
     cout<<setw(39)<<"           /      o\\"<<endl;
@@ -616,6 +618,7 @@ void deletemenu(){ //edit
     
     while(true){
         cout<<"\n";
+
         cout<<setw(39)<<"      _____"<<endl;
         cout<<setw(42)<<"___   / . . \\__"<<endl;
         cout<<setw(42)<<"/   \\  \\/      V"<<endl;
@@ -639,10 +642,12 @@ void deletemenu(){ //edit
             update_menubook(book);
             break;
         }else{
+
             cout<<"\n\n";
             cout<<setw(108)<<"---------------------------------------------------\n";
             cout<<setw(93)<< "Not have this ID in menu"<<endl;
             cout<<setw(108)<<"---------------------------------------------------\n";
+
         }
     }
    
